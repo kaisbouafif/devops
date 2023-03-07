@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build
+      run: docker build -t myapp .
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Test
+      run: docker run myapp vendor/bin/phpunit
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    environment:
+      name: dev
+      url: https://myapp.example.com
+    steps:
+    - name: Deploy
+      run: |
+        docker tag symfony dockydocky007/symfony:$GITHUB_SHA
+        docker push dockydocky007/myapp:$GITHUB_SHA
+        docker tag rabbitmq dockydocky007/rabbitmq:$GITHUB_SHA
+        docker push dockydocky007/rabbitmq:$GITHUB_SHA
+        kubectl apply -f rabbitmq.yaml
+        kubectl apply -f symfony.yaml
+
