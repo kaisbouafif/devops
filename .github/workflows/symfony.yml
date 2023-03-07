@@ -15,13 +15,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Build
-      run: docker build -t myapp .
+      run: docker build -t dockydocky007/symfony:$GITHUB_SHA .
   test:
     runs-on: ubuntu-latest
     needs: build
     steps:
     - name: Test
-      run: docker run myapp vendor/bin/phpunit
+      run: docker run symfony vendor/bin/phpunit
   deploy:
     runs-on: ubuntu-latest
     needs: test
