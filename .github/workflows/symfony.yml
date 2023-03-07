@@ -34,7 +34,7 @@ jobs:
         docker tag symfony dockydocky007/symfony:$GITHUB_SHA
         docker push dockydocky007/myapp:$GITHUB_SHA
         docker tag rabbitmq dockydocky007/rabbitmq:$GITHUB_SHA
-        docker push dockydocky007/rabbitmq:$GITHUB_SHA
+        docker push dockydocky007/rabbitmq:latest
         kubectl apply -f rabbitmq.yaml
         kubectl apply -f symfony.yaml
 
