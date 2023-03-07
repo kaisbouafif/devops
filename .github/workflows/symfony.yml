@@ -20,7 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Test
+    - name: Test run rabbitmq
+      run : docker run dockydocky007/rabbitmq:latest
+    - name: Test run symfony
       run: docker run dockydocky007/symfony:latest bin/console messenger:consume async
   deploy:
     runs-on: ubuntu-latest
