@@ -50,7 +50,6 @@ jobs:
       with:
        args: apply -f devops/symfony.yaml
              apply -f devops/rabbitmq.yaml
-      env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      
 
 
