@@ -9,7 +9,7 @@ class QueueMessageHandler implements MessageHandlerInterface
 {
     public function __invoke(QueueMessage $message)
     {
-        // Simulate a time-consuming task by sleeping for 10 seconds
-        sleep(10);
+        // Simulate a time-consuming task by sleeping for 5 seconds
+        sleep(5);
     }
 }
