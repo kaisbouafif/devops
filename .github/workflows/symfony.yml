@@ -2,8 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - master
+    branches: [ main ]
 
 env:
   DOCKER_DRIVER: overlay2
