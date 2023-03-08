@@ -30,8 +30,8 @@ jobs:
         push: true
         tags: dockydocky007/symfony:latest
     
-    ##- name: Run unit tests
-    #  run: docker run dockydocky007/symfony vendor/bin/phpunit    
+    - name: Run unit tests
+      run: docker run dockydocky007/symfony vendor/bin/phpunit    
 
     - name: Build and push RabbitMQ Docker image
       uses: docker/build-push-action@v2
