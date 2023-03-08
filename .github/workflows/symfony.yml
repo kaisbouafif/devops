@@ -21,7 +21,13 @@ jobs:
         registry: https://index.docker.io/v1/
         username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
         password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-
+    - name: Build and push RabbitMQ Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./
+        file: ./rabbitmq.dockerfile
+        push: true
+        tags: dockydocky007/rabbitmq:latest
     - name: Build and push Symfony Docker image
       uses: docker/build-push-action@v2
       with:
@@ -33,13 +39,7 @@ jobs:
     - name: Run unit tests
       run: docker run dockydocky007/symfony vendor/bin/phpunit    
 
-    - name: Build and push RabbitMQ Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: ./
-        file: ./rabbitmq.dockerfile
-        push: true
-        tags: dockydocky007/rabbitmq:latest
+    
 
   deploy: 
     runs-on: ubuntu-latest     
