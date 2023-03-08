@@ -47,7 +47,7 @@ jobs:
 
     steps:
     - name: Deploy to Kubernetes
-      uses: kubernetes-deploy/action
+      uses: steebchen/kubectl@v2.0.0
       with:
        args: apply -f devops/symfony.yaml
              apply -f devops/rabbitmq.yaml
